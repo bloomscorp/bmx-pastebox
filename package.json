@@ -2,7 +2,11 @@
   "name": "bmx-pastebox",
   "version": "1.0.3",
   "description": "A collection of typescript utility pure functions used internally by Bloomscorp",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
