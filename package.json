@@ -1,6 +1,6 @@
 {
   "name": "bmx-pastebox",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "A collection of typescript utility pure functions used internally by Bloomscorp",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
