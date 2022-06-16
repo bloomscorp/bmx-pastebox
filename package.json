@@ -1,6 +1,6 @@
 {
   "name": "bmx-pastebox",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "A collection of typescript utility pure functions used internally by Bloomscorp",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "pub": "npx tsc && npm publish"
+    "pub": "rm -rf /dist && npx tsc && npm publish"
   },
   "keywords": [
     "pastebox"
