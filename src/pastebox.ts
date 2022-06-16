@@ -9,3 +9,17 @@ export function arrayNotEmpty(array: any[]): boolean {
 export function arrayEmpty(array: any[]): boolean {
 	return !arrayNotEmpty(array);
 }
+
+export function isEmptyString(str: string): boolean {
+	return valueExists(str) && (str.trim() === '' || str.trim().length === 0);
+}
+
+export function arrayLength(array: any[], length: number): boolean {
+	return arrayNotEmpty(array) && array.length === length;
+}
+
+export function areStringsEqual(str1: string, str2: string, ignoreCase: boolean = false): boolean {
+	if (!valueExists(str1) || !valueExists(str2)) return false;
+	else if (ignoreCase) return (str1.toLowerCase() === str2.toLowerCase());
+	else return (str1 === str2);
+}
