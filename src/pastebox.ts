@@ -23,3 +23,10 @@ export function areStringsEqual(str1: string, str2: string, ignoreCase: boolean 
 	else if (ignoreCase) return (str1.toLowerCase() === str2.toLowerCase());
 	else return (str1 === str2);
 }
+
+// https://stackoverflow.com/a/23481096/3640307
+export function arrayDeepCopy(array: []): void {
+	return JSON.parse(
+		JSON.stringify(array)
+	);
+}
