@@ -25,7 +25,7 @@ export function areStringsEqual(str1: string, str2: string, ignoreCase: boolean 
 }
 
 // https://stackoverflow.com/a/23481096/3640307
-export function arrayDeepCopy(array: []): void {
+export function arrayDeepCopy(array: any[]): any[] {
 	return JSON.parse(
 		JSON.stringify(array)
 	);
