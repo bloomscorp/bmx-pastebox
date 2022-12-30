@@ -30,3 +30,7 @@ export function arrayDeepCopy(array: any[]): any[] {
 		JSON.stringify(array)
 	);
 }
+
+export function isEmptyObject(obj: any): boolean {
+	return Object.keys(obj).length === 0;
+}
