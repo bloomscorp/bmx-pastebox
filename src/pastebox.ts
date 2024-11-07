@@ -34,3 +34,11 @@ export function arrayDeepCopy(array: any[]): any[] {
 export function isEmptyObject(obj: any): boolean {
 	return Object.keys(obj).length === 0;
 }
+
+// https://stackoverflow.com/a/10727155/3640307
+export function alphaNumericID(length: number = 12): string {
+	const charSet: string = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	let result: string = '';
+	for (let i: number = length; i > 0; --i) result += charSet[Math.floor(Math.random() * charSet.length)];
+	return result;
+}
