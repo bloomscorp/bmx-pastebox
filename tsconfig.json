@@ -1,16 +1,24 @@
 {
-  "compilerOptions": {
-    /* Visit https://aka.ms/tsconfig.json to read more about this file */
-    "target": "es2016",
-    "module": "es6",           
-    "esModuleInterop": true,                             
-    "forceConsistentCasingInFileNames": true,            
-    "strict": true,                 
-    "skipLibCheck": true,
-    "declaration": true,
-    "outDir": "./dist"
-  },
-  "include": [
-    "src/**/*"
-  ]
+	"compilerOptions": {
+		"target": "ES2022",
+		"lib": ["ES2022"],
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"noUncheckedIndexedAccess": true,
+		"noImplicitReturns": true,
+		"noUnusedLocals": true,
+		"skipLibCheck": true,
+		"declaration": true,
+		"isolatedModules": true,
+		"moduleDetection": "force",
+		/* `tsc` is used only for typechecking — tsup owns emission. Without this,
+		   a stray `tsc` run would write .js and .d.ts files into dist/ behind
+		   tsup's back, which is exactly the class of bug that broke this package
+		   and its consumer bloomsight.js. */
+		"noEmit": true
+	},
+	"include": ["src/**/*", "test/**/*"]
 }

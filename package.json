@@ -1,26 +1,54 @@
 {
   "name": "bmx-pastebox",
-  "version": "1.0.15",
+  "version": "1.0.17",
   "description": "A collection of typescript utility pure functions used internally by Bloomscorp",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "/dist"
+    "dist"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "pub": "rm -rf dist/ && npx tsc && npm publish"
+    "lint": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "build": "tsup",
+    "verify:package": "node scripts/verify-package.js",
+    "release": "release-it"
   },
-  "keywords": [
-    "pastebox"
-  ],
   "author": {
-		"name": "Debabrata Acharya",
-		"email": "debabrata@bloomscorp.com",
-		"url": "https://bloomscorp.com"
-	},
+    "name": "Debabrata Acharya",
+    "email": "debabrata@bloomscorp.com",
+    "url": "https://bloomscorp.com"
+  },
   "license": "MIT",
   "devDependencies": {
-    "typescript": "^4.6.3"
+    "@release-it/conventional-changelog": "^8.0.1",
+    "release-it": "^17.1.1",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.11"
+  },
+  "module": "dist/index.mjs",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "pastebox",
+    "utility",
+    "typescript",
+    "bloomscorp"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bloomscorp/bmx-pastebox.git"
   }
 }

@@ -1,0 +1,56 @@
+{
+	"hooks": {
+		"before:init": [
+			"git pull",
+			"npm run lint",
+			"npm run test",
+			"npm run build",
+			"npm run verify:package"
+		]
+	},
+	"git": {
+		"commitMessage": "chore: release v${version}",
+		"tagName": "v${version}",
+		"requireBranch": "master",
+		"requireUpstream": false,
+		"requireCleanWorkingDir": true,
+		"push": true
+	},
+	"github": {
+		"release": false,
+		"host": "github.com"
+	},
+	"npm": {
+		"publish": false
+	},
+	"plugins": {
+		"@release-it/conventional-changelog": {
+			"infile": "CHANGELOG.md",
+			"preset": {
+				"name": "angular",
+				"types": [
+					{
+						"type": "feat",
+						"section": "Features"
+					},
+					{
+						"type": "fix",
+						"section": "Bug Fixes"
+					},
+					{
+						"type": "docs",
+						"section": "Documentation"
+					},
+					{
+						"type": "perf",
+						"section": "Performance Improvements"
+					},
+					{
+						"type": "build",
+						"section": "Build"
+					}
+				]
+			}
+		}
+	}
+}

@@ -1,0 +1,58 @@
+# Runs on every push and pull request. This repository had no CI at all through
+# seventeen published versions, and shipped a package Node could not load.
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Typecheck
+        run: npm run lint
+
+      - name: Test
+        run: npm run test
+
+      - name: Build
+        run: npm run build
+
+      # The gate that matters. A typecheck passes on the broken package and so
+      # do tests run from source — only loading the built artifact the way a
+      # consumer does catches it.
+      - name: Verify the built package is loadable
+        run: npm run verify:package
+
+      - name: Verify the tarball contents
+        run: |
+          OUT="${RUNNER_TEMP:-/tmp}/pack.json"
+          npm pack --dry-run --json --ignore-scripts > "$OUT"
+          OUT="$OUT" node -e "
+            const fs = require('fs');
+            const raw = fs.readFileSync(process.env.OUT, 'utf8');
+            const start = raw.indexOf('[');
+            if (start === -1) {
+              console.error('npm pack produced no JSON:', raw.slice(0, 200));
+              process.exit(1);
+            }
+            const files = JSON.parse(raw.slice(start))[0].files.map(f => f.path);
+            const need = ['dist/index.js', 'dist/index.mjs', 'dist/index.d.ts'];
+            const absent = need.filter(f => !files.includes(f));
+            if (absent.length) {
+              console.error('missing from the published tarball:', absent);
+              process.exit(1);
+            }
+            console.log('tarball contains all required artefacts (' + files.length + ' files)');
+          "
